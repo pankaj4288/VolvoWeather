@@ -16,20 +16,22 @@ class VolvoWeatherActivity : AppCompatActivity() {
 
     val TAG = "VolvoWeatherActivity"
 
-    var cityNameList: ArrayList<String> = ArrayList()
-    var cityCodeList: ArrayList<Int> = ArrayList()
+    private lateinit var binding:ActivityMainBinding
+    private lateinit var model:VolvoWeatherViewModel
+    private var cityNameList: ArrayList<String> = ArrayList()
+    private var cityCodeList: ArrayList<Int> = ArrayList()
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var adapter: WeatherAdapter
+    private var toastShown:Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
         binding.lifecycleOwner = this
-        val model: VolvoWeatherViewModel =
-            ViewModelProvider(this).get(VolvoWeatherViewModel::class.java)
+        model = ViewModelProvider(this).get(VolvoWeatherViewModel::class.java)
         binding.viewModel = model
 
         linearLayoutManager = LinearLayoutManager(this)
@@ -73,9 +75,11 @@ class VolvoWeatherActivity : AppCompatActivity() {
         })
 
         model.serverError.observe(this, Observer {
-            if (it) {
+            if (it && !toastShown) {
                 // there was some error in api
-                Toast.makeText(this, getString(R.string.server_error), Toast.LENGTH_LONG)
+                binding.progressCircular.visibility = View.GONE
+                Toast.makeText(this, getString(R.string.server_error), Toast.LENGTH_LONG).show()
+                toastShown = true
             }
         })
     }
