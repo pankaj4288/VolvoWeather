@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="row_margin">10dp</dimen>
+    <dimen name="card_corner_radius">10dp</dimen>
+    <dimen name="title_margin">5dp</dimen>
+    <dimen name="title_size">20sp</dimen>
+    <dimen name="weather_details_margin">2dp</dimen>
+    <dimen name="weather_icon_size">15dp</dimen>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Volvo Weather</string>
+    <string name="server_error">Some server error occured</string>
+    <string name="sunrise">Sunrise : %s</string>
+    <string name="sunset">Sunset : %s</string>
+    <string name="max_temp">Max temp : %s</string>
+    <string name="min_temp">Min Temp : %s</string>
+
+</resources>
